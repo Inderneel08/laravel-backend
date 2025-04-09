@@ -11,9 +11,4 @@ class Rating extends Model
     protected $table='rating';
 
     public $timestamps = false;
-
-    public function products()
-    {
-        $this->belongsTo(Products::class);
-    }
 }
