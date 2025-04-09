@@ -15,5 +15,5 @@ Route::middleware('custom.token')->group(function(){
         return response()->json(['message' => 'You are authenticated']);
     });
 
-    Route::post('/api/logout',[ApiController::class, 'logout'])->name('logout');
+    Route::post('/api/auth/logout',[ApiController::class, 'logout'])->name('logout');
 });
