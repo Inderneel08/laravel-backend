@@ -18,4 +18,9 @@ class ProductController extends Controller
 
         return(response()->json(['products'=>$products]));
     }
+
+    public function getProductInfo($id)
+    {
+        // $productInfo = DB::table('')
+    }
 }
