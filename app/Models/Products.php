@@ -11,14 +11,4 @@ class Products extends Model
     protected $table='products';
 
     public $timestamps = false;
-
-    public function ratings()
-    {
-        return($this->hasMany(Rating::class,'rate_id'));
-    }
-
-    public function categories()
-    {
-        return($this->hasMany(Category::class,'category'));
-    }
 }
