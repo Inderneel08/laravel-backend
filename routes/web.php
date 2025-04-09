@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,13 @@ Route::get('/api/products/{id}',[ProductController::class,'getProductInfo'])->na
 
 Route::get('/api/products/category/{id}',[ProductController::class, 'getProductsCategory'])->name('getProductsCategory');
 
+Route::get('/api/getAll/categories',[CategoryController::class,'getAllCategories'])->name('categories');
+
 Route::middleware('custom.token')->group(function(){
     Route::get('/api/auth/check',function(){
         return response()->json(['message' => 'You are authenticated']);
     });
 
     Route::post('/api/auth/logout',[ApiController::class, 'logout'])->name('logout');
+
 });
