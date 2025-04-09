@@ -56,19 +56,23 @@ class ApiController extends Controller
 
         $password = $request->input('password');
 
-        // $user = DB::table('user')->where('email',$email)->first();
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        // if($user){
-        //     return(response()->json(['message' => 'User already exists']));
-        // }
+        $user = User::where('email',$email)->first();
 
-        // DB::table('users')->insert(
-        //     [
-        //         'name' => $name,
-        //         'email' => $email,
-        //         'password' => $password
-        //     ]
-        // );
+        if($user){
+            return(response()->json(['message' => 'User already exists']));
+        }
+
+        User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password
+        ]);
 
         return(response()->json(['message' => 'User registered successfully!']));
     }
