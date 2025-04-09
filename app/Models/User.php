@@ -23,6 +23,7 @@ class User extends Authenticatable
         'role',
         'jwt_token',
         'last_login',
+        'password',
     ];
 
     protected $table='users';
