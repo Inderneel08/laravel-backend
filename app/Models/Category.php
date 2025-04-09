@@ -11,9 +11,4 @@ class Category extends Model
     protected $table='category';
 
     public $timestamps = false;
-
-    public function products()
-    {
-        $this->belongsTo(Products::class);
-    }
 }
