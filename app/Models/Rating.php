@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    //
+    protected $fillable = ['rate', 'count'];
+
+    protected $table='rating';
+
+    public $timestamps = false;
+
+    public function products()
+    {
+        $this->belongsTo(Products::class);
+    }
 }
