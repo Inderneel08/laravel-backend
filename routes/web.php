@@ -20,6 +20,10 @@ Route::get('/api/products/category/{id}',[ProductController::class, 'getProducts
 
 Route::get('/api/getAll/categories',[CategoryController::class,'getAllCategories'])->name('categories');
 
+Route::get('/welcome',function(){
+    return(view('welcome'));
+});
+
 
 Route::get("/api/getStates",function(){
 
