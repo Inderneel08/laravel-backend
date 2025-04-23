@@ -32,7 +32,9 @@ class ApiController extends Controller
 
         $token=hash('sha256',$generatedtoken);
 
-        while(CustomToken::where('token_value',hash('sha256',$token))->first()){
+        while(CustomToken::where('token_value',$token)->first()){
+            $generatedtoken = Str::random(60);
+            
             $token = hash('sha256',$generatedtoken);
         }
 
