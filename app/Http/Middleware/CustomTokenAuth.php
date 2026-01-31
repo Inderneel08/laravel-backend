@@ -21,16 +21,19 @@ class CustomTokenAuth
 
         $token = $request->cookie('token');
 
-        $checkToken = CustomToken::where('token_value',hash('sha256',$token))->first();
-
-        if(!($token) || !($checkToken)){
+        if(!($token)){
             if(in_array($routeName,['createOrders'])){
                 return $next($request);
             }
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        else{
+            $checkToken = CustomToken::where('token_value',hash('sha256',$token))->first();
+        }
 
-        $userObject = $checkToken->user()->first();
+        if(isset($checkToken)){
+            $userObject = $checkToken->user()->first();
+        }
 
         $request->attributes->set('user', [
             'id' => $userObject->id,
