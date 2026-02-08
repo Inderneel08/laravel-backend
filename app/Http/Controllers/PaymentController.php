@@ -204,7 +204,12 @@ class PaymentController extends Controller
 
             return(response()->json(['data'=>$result[0]]));
         } catch (Exception $e) {
-            echo 'Exception when calling PGCreateOrder: ', $e->getMessage(), PHP_EOL;
+            // echo 'Exception when calling PGCreateOrder: ', $e->getMessage(), PHP_EOL;
+
+            return response()->json([
+                'status' => false,
+                'error' => $e->getMessage()
+            ], 500);
         }
 
     }
@@ -260,7 +265,12 @@ class PaymentController extends Controller
                 }
             }
         } catch (Exception $e) {
-            echo 'Exception when calling PGCreateOrder: ', $e->getMessage(), PHP_EOL;
+            // echo 'Exception when calling PGCreateOrder: ', $e->getMessage(), PHP_EOL;
+
+            return response()->json([
+                'status' => false,
+                'error' => $e->getMessage()
+            ], 500);
         }
 
         return(response()->json(['message'=>'Order status updated']));
