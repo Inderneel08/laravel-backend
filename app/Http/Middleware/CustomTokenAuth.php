@@ -33,6 +33,10 @@ class CustomTokenAuth
 
         if(isset($checkToken)){
             $userObject = $checkToken->user()->first();
+
+            if(!$userObject){
+                return response()->json(['error' => 'User not found'], 401);
+            }
         }
 
         $request->attributes->set('user', [
