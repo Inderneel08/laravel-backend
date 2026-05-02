@@ -16,7 +16,7 @@ Route::get('/api/products',[ProductController::class, 'getproducts'])->name('get
 
 Route::get('/api/products/{id}',[ProductController::class,'getProductInfo'])->name('getProductInfo');
 
-Route::get('/api/products/category/{id}',[ProductController::class, 'getProductsCategory'])->name('getProductsCategory');
+Route::get('/api/products/category/{category_id}/{product_id?}',[ProductController::class, 'getProductsCategory'])->name('getProductsCategory');
 
 Route::get('/api/getAll/categories',[CategoryController::class,'getAllCategories'])->name('categories');
 
