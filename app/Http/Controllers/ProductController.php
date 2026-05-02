@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function getProductInfo($id)
     {
-        $productInfo = DB::table('products')->join('rating','products.rate_id','=','rating.id')->join('category','products.category','=','category.id')->where('products.id',$id)->select('products.id as product_id','products.title','products.price','products.description','products.image','rating.rate','category.id as category_id','category.category_name')->first();
+        $productInfo = DB::table('products')->join('rating','products.rate_id','=','rating.id')->join('category','products.category','=','category.id')->where('products.id',$id)->select('products.id','products.title','products.price','products.description','products.image','rating.rate','category.id as category_id','category.category_name')->first();
         // 'public/'.
         $productInfo->image = asset($productInfo->image);
 
@@ -31,12 +31,11 @@ class ProductController extends Controller
     }
 
 
-    public function getProductsCategory($id)
+    public function getProductsCategory($category_id,$product_id=null)
     {
-        $productInfoCategory = Products::where('category',$id)->get();
+        $productInfoCategory = Products::where('category',$category_id)->where('id','!=',$product_id)->get();
 
         foreach($productInfoCategory as $product){
-            // 'public/'.
             $product->image = asset($product->image);
         }
 
